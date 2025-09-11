@@ -31,13 +31,13 @@ export default function Component() {
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   // Staggered animations for stats cards
-  const [setStatsRef, statsVisible] = useStaggeredScrollAnimation(4, { delay: 150, triggerOnce: true })
+  const [setStatsRef, statsVisible] = useStaggeredScrollAnimation(4, { delay: 300, triggerOnce: true })
 
   // Staggered animations for news cards
-  const [setNewsRef, newsVisible] = useStaggeredScrollAnimation(3, { delay: 200, triggerOnce: true })
+  const [setNewsRef, newsVisible] = useStaggeredScrollAnimation(3, { delay: 400, triggerOnce: true })
 
   // Staggered animations for agenda cards
-  const [setAgendaRef, agendaVisible] = useStaggeredScrollAnimation(3, { delay: 200, triggerOnce: true })
+  const [setAgendaRef, agendaVisible] = useStaggeredScrollAnimation(3, { delay: 400, triggerOnce: true })
 
   useEffect(() => {
     // Trigger initial animations
@@ -144,16 +144,16 @@ export default function Component() {
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
       {/* Sticky Header */}
-      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm transition-all duration-300">
+      <header className="sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <ScrollReveal animation="fade-right" delay={0} triggerOnce={false}>
               <div className="flex items-center space-x-3">
-                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center transform transition-all duration-300 hover:scale-110 hover:rotate-3">
+                <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center transform transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-110 hover:rotate-3">
                   <School className="w-6 h-6 text-white" />
                 </div>
-                <span className="text-xl font-bold text-foreground transition-colors duration-300 hover:text-primary">
+                <span className="text-xl font-bold text-foreground transition-colors duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:text-primary">
                   SIMDIK Kota Banjarmasin
                 </span>
               </div>
@@ -178,11 +178,11 @@ export default function Component() {
                                 ? "#kontak"
                                 : "#"
                     }
-                    className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group"
+                    className="text-muted-foreground hover:text-primary font-medium transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] relative group"
                     style={{ animationDelay: `${index * 50}ms` }}
                   >
                     {item}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:w-full"></span>
                   </Link>
                 ))}
               </nav>
@@ -190,7 +190,7 @@ export default function Component() {
 
             {/* Mobile Menu Button */}
             <ScrollReveal animation="fade-left" delay={200} triggerOnce={false}>
-              <button className="md:hidden p-2 rounded-lg transition-all duration-300 hover:bg-accent">
+              <button className="md:hidden p-2 rounded-lg transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:bg-accent">
                 <Menu className="w-6 h-6 text-foreground" />
               </button>
             </ScrollReveal>
@@ -245,7 +245,7 @@ export default function Component() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-          <ScrollReveal animation="fade-up" delay={0} duration={800}>
+          <ScrollReveal animation="fade-up" delay={0} duration={1600}>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               Selamat Datang di Portal Resmi
               <br />
@@ -253,19 +253,19 @@ export default function Component() {
             </h1>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={300} duration={800}>
+          <ScrollReveal animation="fade-up" delay={300} duration={1600}>
             <p className="text-xl text-gray-100 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
               Bersama membangun pendidikan berkualitas untuk generasi emas Banjarmasin. Kami berkomitmen menciptakan
               ekosistem pendidikan yang inovatif, inklusif, dan berdaya saing tinggi untuk masa depan yang lebih cerah.
             </p>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={600} duration={800}>
+          <ScrollReveal animation="fade-up" delay={600} duration={1600}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/tentang-simdik">
                 <Button
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-pulse-subtle"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 transform transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-105 hover:shadow-xl animate-pulse-subtle"
                 >
                   Tentang SIMDIK
                 </Button>
@@ -274,7 +274,7 @@ export default function Component() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-blue-400 text-blue-300 hover:bg-blue-900/20 hover:text-white px-8 py-3 bg-transparent transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="border-blue-400 text-blue-300 hover:bg-blue-900/20 hover:text-white px-8 py-3 bg-transparent transform transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-105 hover:shadow-xl"
                 >
                   Direktori Sekolah
                 </Button>
@@ -301,7 +301,7 @@ export default function Component() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal animation="fade-up" delay={0} duration={800}>
+          <ScrollReveal animation="fade-up" delay={0} duration={1600}>
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-foreground mb-4">Data Pendidikan Kota Banjarmasin</h2>
               <p className="text-muted-foreground text-lg">
@@ -318,18 +318,18 @@ export default function Component() {
                 <div
                   key={index}
                   ref={setStatsRef(index)}
-                  className={`transform transition-all duration-700 ease-out ${
+                  className={`transform transition-all duration-1400 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
                     statsVisible[index] ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
                   }`}
                 >
-                  <Card className="text-center p-6 h-full hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group cursor-pointer border-2 border-transparent hover:border-blue-400">
+                  <Card className="text-center p-6 h-full hover:shadow-xl transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] transform hover:-translate-y-2 group cursor-pointer border-2 border-transparent hover:border-blue-400">
                     <CardContent className="pt-6 h-full flex flex-col justify-center">
                       <div
-                        className={`w-16 h-16 ${chartColorClass} rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 shadow-md`}
+                        className={`w-16 h-16 ${chartColorClass} rounded-full flex items-center justify-center mx-auto mb-4 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110 group-hover:rotate-6 shadow-md`}
                       >
                         <Icon className={`w-8 h-8 ${chartColorClass}`} />
                       </div>
-                      <div className="text-3xl font-bold text-foreground mb-2 transition-all duration-300 group-hover:text-blue-600">
+                      <div className="text-3xl font-bold text-foreground mb-2 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:text-blue-600">
                         <AnimatedNumber value={stat.number} isVisible={statsVisible[index]} />
                       </div>
                       <div className="text-muted-foreground font-medium">{stat.label}</div>
@@ -341,7 +341,7 @@ export default function Component() {
             })}
           </div>
 
-          <ScrollReveal animation="fade-up" delay={400} duration={800}>
+          <ScrollReveal animation="fade-up" delay={400} duration={1600}>
             <div className="bg-gradient-to-r from-blue-50/80 to-blue-100/80 dark:from-blue-950/40 dark:to-blue-900/40 rounded-xl p-8 mb-8 border border-blue-200/50 dark:border-blue-800/50">
               <h3 className="text-2xl font-bold text-foreground mb-6 text-center">
                 Rincian Data Sekolah per Jenjang Pendidikan
@@ -350,7 +350,7 @@ export default function Component() {
                 {detailedStats.map((category, categoryIndex) => (
                   <div
                     key={categoryIndex}
-                    className="bg-card/90 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-border/50 hover:shadow-xl hover:border-blue-300/50 dark:hover:border-blue-600/50 transition-all duration-300"
+                    className="bg-card/90 backdrop-blur-sm rounded-lg p-6 shadow-lg border border-border/50 hover:shadow-xl hover:border-blue-300/50 dark:hover:border-blue-600/50 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
                   >
                     <h4 className="text-lg font-semibold text-foreground mb-4 text-center border-b border-border pb-2">
                       {category.category}
@@ -359,7 +359,7 @@ export default function Component() {
                       {category.data.map((item, itemIndex) => (
                         <div
                           key={itemIndex}
-                          className="flex justify-between items-center p-3 bg-muted/60 hover:bg-muted/80 dark:bg-muted/40 dark:hover:bg-muted/60 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-md border border-transparent hover:border-blue-200/50 dark:hover:border-blue-700/50"
+                          className="flex justify-between items-center p-3 bg-muted/60 hover:bg-muted/80 dark:bg-muted/40 dark:hover:bg-muted/60 rounded-lg transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-[1.02] hover:shadow-md border border-transparent hover:border-blue-200/50 dark:hover:border-blue-700/50"
                         >
                           <div>
                             <div className="font-medium text-foreground">{item.level}</div>
@@ -375,19 +375,19 @@ export default function Component() {
             </div>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={600} duration={800}>
+          <ScrollReveal animation="fade-up" delay={600} duration={1600}>
             <div className="text-center bg-gradient-to-r from-blue-50/80 to-blue-100/80 dark:from-blue-950/40 dark:to-blue-900/40 rounded-lg p-6 border border-blue-200/50 dark:border-blue-800/50">
               <div className="flex justify-center">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4 max-w-2xl">
-                  <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-300 hover:scale-105 hover:shadow-md border border-transparent hover:border-blue-200/50 dark:hover:border-blue-700/50">
+                  <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-105 hover:shadow-md border border-transparent hover:border-blue-200/50 dark:hover:border-blue-700/50">
                     <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">314</div>
                     <div className="text-sm text-muted-foreground">Total Sekolah</div>
                   </div>
-                  <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-300 hover:scale-105 hover:shadow-md border border-transparent hover:border-green-200/50 dark:hover:border-green-700/50">
+                  <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-105 hover:shadow-md border border-transparent hover:border-green-200/50 dark:hover:border-green-700/50">
                     <div className="text-2xl font-bold text-green-600 dark:text-green-400">2,847</div>
                     <div className="text-sm text-muted-foreground">Total Guru</div>
                   </div>
-                  <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-300 hover:scale-105 hover:shadow-md border border-transparent hover:border-purple-200/50 dark:hover:border-purple-700/50">
+                  <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-105 hover:shadow-md border border-transparent hover:border-purple-200/50 dark:hover:border-purple-700/50">
                     <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">50,050</div>
                     <div className="text-sm text-muted-foreground">Total Siswa</div>
                   </div>
@@ -413,23 +413,23 @@ export default function Component() {
       {/* News Section */}
       <section id="berita" className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal animation="fade-up" delay={0} duration={800}>
+          <ScrollReveal animation="fade-up" delay={0} duration={1600}>
             <h2 className="text-3xl font-bold text-center text-foreground mb-12">Berita Terkini</h2>
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={200} duration={800}>
+          <ScrollReveal animation="fade-up" delay={200} duration={1600}>
             <ScrollingNewsCarousel />
           </ScrollReveal>
 
-          <ScrollReveal animation="fade-up" delay={600} duration={800}>
+          <ScrollReveal animation="fade-up" delay={600} duration={1600}>
             <div className="text-center mt-12">
               <Link href="/berita">
                 <Button
                   size="lg"
-                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
+                  className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 transform transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-105 hover:shadow-xl"
                 >
                   Lihat Semua Berita
-                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                  <span className="ml-2 transition-transform duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-x-1">→</span>
                 </Button>
               </Link>
             </div>
@@ -440,7 +440,7 @@ export default function Component() {
       {/* Agenda Section */}
       <section id="agenda" className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal animation="fade-up" delay={0} duration={800}>
+          <ScrollReveal animation="fade-up" delay={0} duration={1600}>
             <h2 className="text-3xl font-bold text-center text-foreground mb-12">Agenda Mendatang</h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -468,13 +468,13 @@ export default function Component() {
               <div
                 key={index}
                 ref={setAgendaRef(index)}
-                className={`transform transition-all duration-700 ease-out ${
+                className={`transform transition-all duration-1400 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
                   agendaVisible[index] ? "opacity-100 translate-y-0 rotate-0" : "opacity-0 translate-y-8 rotate-1"
                 }`}
               >
-                <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 group border-2 border-transparent hover:border-blue-400">
+                <Card className="overflow-hidden hover:shadow-xl transition-all duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] transform hover:-translate-y-3 group border-2 border-transparent hover:border-blue-400">
                   <CardContent className="p-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2 transition-all duration-300 group-hover:text-blue-600">
+                    <h3 className="text-xl font-bold text-foreground mb-2 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:text-blue-600">
                       {agenda.title}
                     </h3>
                     <p className="text-muted-foreground text-sm mb-2">
@@ -492,10 +492,10 @@ export default function Component() {
                             ? "lomba-inovasi-pembelajaran"
                             : "seminar-nasional-pendidikan"
                       }`}
-                      className="text-blue-600 hover:text-blue-700 font-medium transition-all duration-300 relative group-hover:translate-x-2 inline-flex items-center"
+                      className="text-blue-600 hover:text-blue-700 font-medium transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] relative group-hover:translate-x-2 inline-flex items-center"
                     >
                       Lihat Detail
-                      <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
+                      <span className="ml-1 transition-transform duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-x-1">→</span>
                     </Link>
                   </CardContent>
                 </Card>
@@ -508,12 +508,12 @@ export default function Component() {
       {/* Contact Section */}
       <section id="kontak" className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <ScrollReveal animation="fade-up" delay={0} duration={800}>
+          <ScrollReveal animation="fade-up" delay={0} duration={1600}>
             <h2 className="text-3xl font-bold text-center text-foreground mb-12">Hubungi Kami</h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Contact Info */}
-            <ScrollReveal animation="fade-right" delay={200} duration={800}>
+            <ScrollReveal animation="fade-right" delay={200} duration={1600}>
               <div className="space-y-6">
                 <p className="text-muted-foreground text-lg leading-relaxed">
                   Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan, saran, atau membutuhkan bantuan. Tim
@@ -536,7 +536,7 @@ export default function Component() {
                     <p className="text-foreground">disdik@banjarmasinkota.go.id</p>
                   </div>
                 </div>
-                <div className="w-full h-64 bg-muted rounded-lg overflow-hidden relative border-2 border-border hover:border-blue-400 transition-all duration-300">
+                <div className="w-full h-64 bg-muted rounded-lg overflow-hidden relative border-2 border-border hover:border-blue-400 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
                   <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3983.0234567890123!2d114.5901234567890!3d-3.3234567890123456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2de423456789abcd%3A0x123456789abcdef0!2sJl.%20Kapten%20Piere%20Tendean%20No.29%2C%20RT.40%2C%20Gadang%2C%20Kec.%20Banjarmasin%20Tengah%2C%20Kota%20Banjarmasin%2C%20Kalimantan%20Selatan%2070231!5e0!3m2!1sid!2sid!4v1234567890123!5m2!1sid!2sid"
                     width="100%"
@@ -552,9 +552,9 @@ export default function Component() {
                     href="https://maps.app.goo.gl/pizxzTH98tPczi9k8"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="absolute inset-0 bg-transparent hover:bg-blue-600/10 transition-all duration-300 flex items-center justify-center opacity-0 hover:opacity-100"
+                    className="absolute inset-0 bg-transparent hover:bg-blue-600/10 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] flex items-center justify-center opacity-0 hover:opacity-100"
                   >
-                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg transform scale-95 hover:scale-100 transition-all duration-300">
+                    <div className="bg-blue-600 text-white px-4 py-2 rounded-lg shadow-lg transform scale-95 hover:scale-100 transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]">
                       <MapPin className="w-5 h-5 inline mr-2" />
                       Buka di Google Maps
                     </div>
@@ -564,7 +564,7 @@ export default function Component() {
             </ScrollReveal>
 
             {/* Contact Form */}
-            <ScrollReveal animation="fade-left" delay={400} duration={800}>
+            <ScrollReveal animation="fade-left" delay={400} duration={1600}>
               <Card className="p-6">
                 <CardContent className="p-0">
                   <form className="space-y-6">
@@ -608,10 +608,10 @@ export default function Component() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {/* Column 1: Logo and Mission */}
-            <ScrollReveal animation="fade-up" delay={0} duration={800}>
+            <ScrollReveal animation="fade-up" delay={0} duration={1600}>
               <div>
                 <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-12">
+                  <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:scale-110 hover:rotate-12">
                     <School className="w-6 h-6 text-white" />
                   </div>
                   <span className="text-xl font-bold text-white">SIMDIK</span>
@@ -624,7 +624,7 @@ export default function Component() {
             </ScrollReveal>
 
             {/* Column 2: Quick Links */}
-            <ScrollReveal animation="fade-up" delay={200} duration={800}>
+            <ScrollReveal animation="fade-up" delay={200} duration={1600}>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-4">Tautan Cepat</h3>
                 <ul className="space-y-2">
@@ -645,7 +645,7 @@ export default function Component() {
                                       ? "#kontak"
                                       : "#"
                           }
-                          className="text-blue-200 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block"
+                          className="text-blue-200 hover:text-white transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:translate-x-2 inline-block"
                         >
                           {item}
                         </Link>
@@ -657,25 +657,25 @@ export default function Component() {
             </ScrollReveal>
 
             {/* Column 3: Contact Info */}
-            <ScrollReveal animation="fade-up" delay={400} duration={800}>
+            <ScrollReveal animation="fade-up" delay={400} duration={1600}>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-4">Kontak Kami</h3>
                 <div className="space-y-3 text-blue-200">
-                  <p className="transition-all duration-300 hover:text-white">
+                  <p className="transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:text-white">
                     Jl. Kapten Piere Tendean No.29, RT.40
                     <br />
                     Gadang, Kec. Banjarmasin Tengah
                     <br />
                     Kota Banjarmasin, Kalimantan Selatan 70231
                   </p>
-                  <p className="transition-all duration-300 hover:text-white">Telepon: (0511) 3252732</p>
-                  <p className="transition-all duration-300 hover:text-white">Email: disdik@banjarmasinkota.go.id</p>
+                  <p className="transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:text-white">Telepon: (0511) 3252732</p>
+                  <p className="transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:text-white">Email: disdik@banjarmasinkota.go.id</p>
                 </div>
               </div>
             </ScrollReveal>
 
             {/* Column 4: Social Media */}
-            <ScrollReveal animation="fade-up" delay={600} duration={800}>
+            <ScrollReveal animation="fade-up" delay={600} duration={1600}>
               <div>
                 <h3 className="text-lg font-semibold text-white mb-4">Media Sosial</h3>
                 <div className="flex space-x-4">
@@ -689,7 +689,7 @@ export default function Component() {
                       <Link
                         key={index}
                         href="#"
-                        className={`w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center ${social.color} transition-all duration-300 transform hover:scale-110 hover:-translate-y-1`}
+                        className={`w-10 h-10 bg-blue-800 rounded-lg flex items-center justify-center ${social.color} transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] transform hover:scale-110 hover:-translate-y-1`}
                       >
                         <Icon className="w-5 h-5" />
                       </Link>
@@ -701,7 +701,7 @@ export default function Component() {
           </div>
 
           {/* Copyright */}
-          <ScrollReveal animation="fade-up" delay={800} duration={800}>
+          <ScrollReveal animation="fade-up" delay={800} duration={1600}>
             <div className="border-t border-blue-800 mt-8 pt-8 text-center text-blue-200">
               <p>&copy; {new Date().getFullYear()} Dinas Pendidikan Kota Banjarmasin. Semua hak dilindungi.</p>
             </div>
@@ -712,7 +712,7 @@ export default function Component() {
       {/* Scroll to Top Button */}
       <button
         onClick={scrollToTop}
-        className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg transition-all duration-300 hover:bg-blue-700 hover:scale-110 ${
+        className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg transition-all duration-600 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] hover:bg-blue-700 hover:scale-110 ${
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
       >

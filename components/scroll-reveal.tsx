@@ -16,41 +16,42 @@ export function ScrollReveal({
   children,
   animation = "fade-up",
   delay = 0,
-  duration = 600,
+  duration = 1200,
   className = "",
   triggerOnce = true,
 }: ScrollRevealProps) {
   const [ref, isVisible] = useScrollAnimation({ triggerOnce })
 
   const getAnimationClass = () => {
-    const baseClass = "transition-all ease-out"
+    const baseClass = "transition-all"
     const durationClass = `duration-[${duration}ms]`
     const delayClass = delay > 0 ? `delay-[${delay}ms]` : ""
+    const easingClass = "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
 
     if (!isVisible) {
       switch (animation) {
         case "fade-up":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 translate-y-8`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 translate-y-8`
         case "fade-down":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 -translate-y-8`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 -translate-y-8`
         case "fade-left":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 translate-x-8`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 translate-x-8`
         case "fade-right":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 -translate-x-8`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 -translate-x-8`
         case "scale":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 scale-95`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 scale-95`
         case "rotate":
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 rotate-3 scale-95`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 rotate-3 scale-95`
         default:
-          return `${baseClass} ${durationClass} ${delayClass} opacity-0 translate-y-8`
+          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 translate-y-8`
       }
     }
 
-    return `${baseClass} ${durationClass} ${delayClass} opacity-100 translate-y-0 translate-x-0 scale-100 rotate-0`
+    return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-100 translate-y-0 translate-x-0 scale-100 rotate-0`
   }
 
   return (
-    <div ref={ref} className={`${getAnimationClass()} ${className}`}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={`${getAnimationClass()} ${className}`}>
       {children}
     </div>
   )
