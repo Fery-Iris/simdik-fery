@@ -24,34 +24,37 @@ export function ScrollReveal({
 
   const getAnimationClass = () => {
     const baseClass = "transition-all"
-    const durationClass = `duration-[${duration}ms]`
-    const delayClass = delay > 0 ? `delay-[${delay}ms]` : ""
-    const easingClass = "ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
 
     if (!isVisible) {
       switch (animation) {
         case "fade-up":
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 translate-y-8`
+          return `${baseClass} opacity-0 translate-y-8`
         case "fade-down":
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 -translate-y-8`
+          return `${baseClass} opacity-0 -translate-y-8`
         case "fade-left":
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 translate-x-8`
+          return `${baseClass} opacity-0 translate-x-8`
         case "fade-right":
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 -translate-x-8`
+          return `${baseClass} opacity-0 -translate-x-8`
         case "scale":
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 scale-95`
+          return `${baseClass} opacity-0 scale-95`
         case "rotate":
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 rotate-3 scale-95`
+          return `${baseClass} opacity-0 rotate-3 scale-95`
         default:
-          return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-0 translate-y-8`
+          return `${baseClass} opacity-0 translate-y-8`
       }
     }
 
-    return `${baseClass} ${durationClass} ${delayClass} ${easingClass} opacity-100 translate-y-0 translate-x-0 scale-100 rotate-0`
+    return `${baseClass} opacity-100 translate-y-0 translate-x-0 scale-100 rotate-0`
   }
 
+  const transitionStyle = {
+    transitionDuration: `${duration}ms`,
+    transitionDelay: `${delay}ms`,
+    transitionTimingFunction: "cubic-bezier(0.25, 0.46, 0.45, 0.94)",
+  } as const
+
   return (
-    <div ref={ref as React.RefObject<HTMLDivElement>} className={`${getAnimationClass()} ${className}`}>
+    <div ref={ref as React.RefObject<HTMLDivElement>} className={`${getAnimationClass()} ${className}`} style={transitionStyle}>
       {children}
     </div>
   )
