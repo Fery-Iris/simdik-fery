@@ -66,7 +66,7 @@ export function useStaggeredScrollAnimation(count: number, options: UseScrollAni
                   return newState
                 })
               },
-              (options.delay || 200) * index,
+              (options.delay || 100) * index,
             )
 
             if (options.triggerOnce) {

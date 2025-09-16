@@ -136,7 +136,7 @@ export function ScrollingNewsCarousel() {
       {/* Scrolling Container */}
       <div
         ref={scrollContainerRef}
-        className="flex transition-transform duration-1000 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+        className="flex transition-transform duration-700 ease-in-out"
         style={{
           transform: `translateX(-${currentIndex * (100 / 3)}%)`,
           width: `${(allNewsData.length * 100) / 3}%`,
@@ -144,27 +144,27 @@ export function ScrollingNewsCarousel() {
       >
         {allNewsData.map((news, index) => (
           <div key={news.id} className="w-1/3 px-3 flex-shrink-0">
-            <Card className="overflow-hidden hover:shadow-xl transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] transform hover:-translate-y-3 group border-2 border-transparent hover:border-blue-400 h-full">
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 group border-2 border-transparent hover:border-blue-400 h-full">
               <div className="aspect-video relative overflow-hidden">
                 <Image
                   src={news.image || "/placeholder.svg"}
                   alt={news.title}
                   fill
-                  className="object-cover transition-all duration-700 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:scale-110 group-hover:brightness-110"
+                  className="object-cover transition-all duration-500 group-hover:scale-110 group-hover:brightness-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-blue-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
               </div>
               <CardContent className="p-6">
-                <h3 className="text-xl font-bold text-foreground mb-3 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:text-blue-600 line-clamp-2">
+                <h3 className="text-xl font-bold text-foreground mb-3 transition-all duration-300 group-hover:text-blue-600 line-clamp-2">
                   {news.title}
                 </h3>
                 <p className="text-muted-foreground mb-4 line-clamp-3">{news.excerpt}</p>
                 <Link
                   href={`/berita/${news.slug}`}
-                  className="text-blue-600 hover:text-blue-700 font-medium transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] relative group-hover:translate-x-2 inline-flex items-center"
+                  className="text-blue-600 hover:text-blue-700 font-medium transition-all duration-300 relative group-hover:translate-x-2 inline-flex items-center"
                 >
                   Baca Selengkapnya
-                  <span className="ml-1 transition-transform duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] group-hover:translate-x-1">→</span>
+                  <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Link>
               </CardContent>
             </Card>
@@ -176,7 +176,7 @@ export function ScrollingNewsCarousel() {
       <Button
         variant="outline"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-2 border-transparent hover:border-blue-400 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300"
         onClick={goToPrevious}
       >
         <ChevronLeft className="w-4 h-4" />
@@ -185,7 +185,7 @@ export function ScrollingNewsCarousel() {
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-2 border-transparent hover:border-blue-400 transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)]"
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white shadow-lg border-2 border-transparent hover:border-blue-400 transition-all duration-300"
         onClick={goToNext}
       >
         <ChevronRight className="w-4 h-4" />
@@ -196,7 +196,7 @@ export function ScrollingNewsCarousel() {
         {allNewsData.map((_, index) => (
           <button
             key={index}
-            className={`w-3 h-3 rounded-full transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${
               index === currentIndex ? "bg-blue-600 scale-125" : "bg-gray-300 hover:bg-gray-400"
             }`}
             onClick={() => goToSlide(index)}
@@ -207,7 +207,7 @@ export function ScrollingNewsCarousel() {
       {/* Auto-scroll indicator */}
       <div className="absolute top-4 right-4 z-10">
         <div
-          className={`w-2 h-2 rounded-full transition-all duration-500 ease-[cubic-bezier(0.25,0.46,0.45,0.94)] ${
+          className={`w-2 h-2 rounded-full transition-all duration-300 ${
             isAutoScrolling ? "bg-green-500 animate-pulse" : "bg-gray-400"
           }`}
         />

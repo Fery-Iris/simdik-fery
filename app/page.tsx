@@ -1,8 +1,8 @@
-"use client";
+"use client"
 
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { useState, useEffect } from "react"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import {
   School,
   Users,
@@ -16,63 +16,48 @@ import {
   MapPin,
   Phone,
   Mail,
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { ScrollReveal } from "@/components/scroll-reveal";
-import { useStaggeredScrollAnimation } from "@/hooks/use-scroll-animation";
-import { ThemeToggle } from "@/components/theme-toggle";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { ScrollingNewsCarousel } from "@/components/scrolling-news-carousel";
+} from "lucide-react"
+import Image from "next/image"
+import Link from "next/link"
+import { ScrollReveal } from "@/components/scroll-reveal"
+import { useStaggeredScrollAnimation } from "@/hooks/use-scroll-animation"
+import { ThemeToggle } from "@/components/theme-toggle"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+import { ScrollingNewsCarousel } from "@/components/scrolling-news-carousel"
 
 export default function Component() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showScrollTop, setShowScrollTop] = useState(false);
+  const [isVisible, setIsVisible] = useState(false)
+  const [showScrollTop, setShowScrollTop] = useState(false)
 
   // Staggered animations for stats cards
-  const [setStatsRef, statsVisible] = useStaggeredScrollAnimation(4, {
-    delay: 150,
-    triggerOnce: true,
-  });
+  const [setStatsRef, statsVisible] = useStaggeredScrollAnimation(4, { delay: 150, triggerOnce: true })
 
   // Staggered animations for news cards
-  const [setNewsRef, newsVisible] = useStaggeredScrollAnimation(3, {
-    delay: 200,
-    triggerOnce: true,
-  });
+  const [setNewsRef, newsVisible] = useStaggeredScrollAnimation(3, { delay: 200, triggerOnce: true })
 
   // Staggered animations for agenda cards
-  const [setAgendaRef, agendaVisible] = useStaggeredScrollAnimation(3, {
-    delay: 200,
-    triggerOnce: true,
-  });
+  const [setAgendaRef, agendaVisible] = useStaggeredScrollAnimation(3, { delay: 200, triggerOnce: true })
 
   useEffect(() => {
     // Trigger initial animations
-    setIsVisible(true);
+    setIsVisible(true)
 
     // Handle scroll events
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 300);
-    };
+      setShowScrollTop(window.scrollY > 300)
+    }
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    window.addEventListener("scroll", handleScroll)
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [])
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }
 
   const statsData = [
-    {
-      icon: School,
-      number: "127",
-      label: "PAUD",
-      chartColor: "chart-1",
-      detail: "Pendidikan Anak Usia Dini",
-    },
+    { icon: School, number: "127", label: "PAUD", chartColor: "chart-1", detail: "Pendidikan Anak Usia Dini" },
     {
       icon: GraduationCap,
       number: "112",
@@ -94,7 +79,7 @@ export default function Component() {
       chartColor: "chart-5",
       detail: "Persentase Akreditasi Baik",
     },
-  ];
+  ]
 
   const detailedStats = [
     {
@@ -121,52 +106,40 @@ export default function Component() {
         { level: "MTs", count: 12, students: "1,800" },
       ],
     },
-  ];
+  ]
 
   // Component for animating numbers
-  const AnimatedNumber = ({
-    value,
-    isVisible,
-  }: {
-    value: string;
-    isVisible: boolean;
-  }) => {
-    const [displayNumber, setDisplayNumber] = useState(0);
-    const targetNumber = Number.parseInt(value.replace(/,/g, ""), 10);
+  const AnimatedNumber = ({ value, isVisible }: { value: string; isVisible: boolean }) => {
+    const [displayNumber, setDisplayNumber] = useState(0)
+    const targetNumber = Number.parseInt(value.replace(/,/g, ""), 10)
 
     useEffect(() => {
       if (isVisible) {
-        const start = 0;
-        const duration = 1000; // 1 second
-        let startTime: number | null = null;
+        const start = 0
+        const duration = 1000 // 1 second
+        let startTime: number | null = null
 
         const animateCount = (currentTime: number) => {
-          if (!startTime) startTime = currentTime;
-          const progress = (currentTime - startTime) / duration;
-          const current = Math.min(progress, 1) * targetNumber;
-          setDisplayNumber(Math.floor(current));
+          if (!startTime) startTime = currentTime
+          const progress = (currentTime - startTime) / duration
+          const current = Math.min(progress, 1) * targetNumber
+          setDisplayNumber(Math.floor(current))
 
           if (progress < 1) {
-            requestAnimationFrame(animateCount);
+            requestAnimationFrame(animateCount)
           } else {
-            setDisplayNumber(targetNumber); // Ensure it reaches the final number
+            setDisplayNumber(targetNumber) // Ensure it reaches the final number
           }
-        };
+        }
 
-        requestAnimationFrame(animateCount);
+        requestAnimationFrame(animateCount)
       } else {
-        setDisplayNumber(0); // Reset when not visible
+        setDisplayNumber(0) // Reset when not visible
       }
-    }, [isVisible, targetNumber]);
+    }, [isVisible, targetNumber])
 
-    return (
-      <>
-        {value.includes("%")
-          ? `${displayNumber}%`
-          : displayNumber.toLocaleString()}
-      </>
-    );
-  };
+    return <>{value.includes("%") ? `${displayNumber}%` : displayNumber.toLocaleString()}</>
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
@@ -189,36 +162,33 @@ export default function Component() {
             {/* Navigation */}
             <ScrollReveal animation="fade-left" delay={100} triggerOnce={false}>
               <nav className="hidden md:flex items-center space-x-8">
-                {[
-                  "Beranda",
-                  "Tentang SIMDIK",
-                  "Direktori Sekolah",
-                  "Berita",
-                  "Agenda",
-                  "Kontak",
-                ].map((item, index) => (
-                  <Link
-                    key={item}
-                    href={
-                      item === "Direktori Sekolah"
-                        ? "/direktori-sekolah"
-                        : item === "Tentang SIMDIK"
-                        ? "/tentang-simdik"
-                        : item === "Berita"
-                        ? "#berita"
-                        : item === "Agenda"
-                        ? "#agenda"
-                        : item === "Kontak"
-                        ? "#kontak"
-                        : "#"
-                    }
-                    className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group"
-                    style={{ animationDelay: `${index * 50}ms` }}
-                  >
-                    {item}
-                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
-                  </Link>
-                ))}
+                {["Beranda", "Reservasi", "Tentang SIMDIK", "Direktori Sekolah", "Berita", "Agenda", "Kontak"].map(
+                  (item, index) => (
+                    <Link
+                      key={item}
+                      href={
+                        item === "Reservasi"
+                          ? "/reservasi"
+                          : item === "Direktori Sekolah"
+                            ? "/direktori-sekolah"
+                            : item === "Tentang SIMDIK"
+                              ? "/tentang-simdik"
+                              : item === "Berita"
+                                ? "#berita"
+                                : item === "Agenda"
+                                  ? "#agenda"
+                                  : item === "Kontak"
+                                    ? "#kontak"
+                                    : "#"
+                      }
+                      className="text-muted-foreground hover:text-primary font-medium transition-all duration-300 relative group"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      {item}
+                      <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                    </Link>
+                  ),
+                )}
               </nav>
             </ScrollReveal>
 
@@ -245,8 +215,7 @@ export default function Component() {
             className="object-cover object-center animate-bg-pan"
             priority
           />
-          <div className="absolute inset-0 bg-blue-900 opacity-60"></div>{" "}
-          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-blue-900 opacity-60"></div> {/* Dark overlay for text readability */}
         </div>
 
         {/* Background Animation - More colorful and dynamic "pernak-pernik" */}
@@ -284,23 +253,27 @@ export default function Component() {
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight drop-shadow-lg">
               Selamat Datang di Portal Resmi
               <br />
-              <span className="text-blue-300 animate-gradient-text-vibrant">
-                Dinas Pendidikan Kota Banjarmasin
-              </span>
+              <span className="text-blue-300 animate-gradient-text-vibrant">Dinas Pendidikan Kota Banjarmasin</span>
             </h1>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={300} duration={800}>
             <p className="text-xl text-gray-100 mb-8 max-w-3xl mx-auto leading-relaxed drop-shadow-md">
-              Bersama membangun pendidikan berkualitas untuk generasi emas
-              Banjarmasin. Kami berkomitmen menciptakan ekosistem pendidikan
-              yang inovatif, inklusif, dan berdaya saing tinggi untuk masa depan
-              yang lebih cerah.
+              Bersama membangun pendidikan berkualitas untuk generasi emas Banjarmasin. Kami berkomitmen menciptakan
+              ekosistem pendidikan yang inovatif, inklusif, dan berdaya saing tinggi untuk masa depan yang lebih cerah.
             </p>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={600} duration={800}>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href="/reservasi">
+                <Button
+                  size="lg"
+                  className="bg-green-600 hover:bg-green-700 text-white px-8 py-3 transform transition-all duration-300 hover:scale-105 hover:shadow-xl animate-pulse-subtle"
+                >
+                  Reservasi Online
+                </Button>
+              </Link>
               <Link href="/tentang-simdik">
                 <Button
                   size="lg"
@@ -342,28 +315,23 @@ export default function Component() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up" delay={0} duration={800}>
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-foreground mb-4">
-                Data Pendidikan Kota Banjarmasin
-              </h2>
+              <h2 className="text-3xl font-bold text-foreground mb-4">Data Pendidikan Kota Banjarmasin</h2>
               <p className="text-muted-foreground text-lg">
-                Data terkini berdasarkan Dapodik Kemendikbudristek per Semester
-                Genap 2024/2025
+                Data terkini berdasarkan Dapodik Kemendikbudristek per Semester Genap 2024/2025
               </p>
             </div>
           </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
             {statsData.map((stat, index) => {
-              const Icon = stat.icon;
-              const chartColorClass = `bg-${stat.chartColor}/10 text-${stat.chartColor}`;
+              const Icon = stat.icon
+              const chartColorClass = `bg-${stat.chartColor}/10 text-${stat.chartColor}`
               return (
                 <div
                   key={index}
                   ref={setStatsRef(index)}
                   className={`transform transition-all duration-700 ease-out ${
-                    statsVisible[index]
-                      ? "opacity-100 translate-y-0 scale-100"
-                      : "opacity-0 translate-y-8 scale-95"
+                    statsVisible[index] ? "opacity-100 translate-y-0 scale-100" : "opacity-0 translate-y-8 scale-95"
                   }`}
                 >
                   <Card className="text-center p-6 h-full hover:shadow-xl transition-all duration-500 transform hover:-translate-y-2 group cursor-pointer border-2 border-transparent hover:border-blue-400">
@@ -374,21 +342,14 @@ export default function Component() {
                         <Icon className={`w-8 h-8 ${chartColorClass}`} />
                       </div>
                       <div className="text-3xl font-bold text-foreground mb-2 transition-all duration-300 group-hover:text-blue-600">
-                        <AnimatedNumber
-                          value={stat.number}
-                          isVisible={statsVisible[index]}
-                        />
+                        <AnimatedNumber value={stat.number} isVisible={statsVisible[index]} />
                       </div>
-                      <div className="text-muted-foreground font-medium">
-                        {stat.label}
-                      </div>
-                      <div className="text-xs text-muted-foreground/70 mt-1">
-                        {stat.detail}
-                      </div>
+                      <div className="text-muted-foreground font-medium">{stat.label}</div>
+                      <div className="text-xs text-muted-foreground/70 mt-1">{stat.detail}</div>
                     </CardContent>
                   </Card>
                 </div>
-              );
+              )
             })}
           </div>
 
@@ -413,16 +374,10 @@ export default function Component() {
                           className="flex justify-between items-center p-3 bg-muted/60 hover:bg-muted/80 dark:bg-muted/40 dark:hover:bg-muted/60 rounded-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-md border border-transparent hover:border-blue-200/50 dark:hover:border-blue-700/50"
                         >
                           <div>
-                            <div className="font-medium text-foreground">
-                              {item.level}
-                            </div>
-                            <div className="text-sm text-muted-foreground">
-                              {item.students} siswa
-                            </div>
+                            <div className="font-medium text-foreground">{item.level}</div>
+                            <div className="text-sm text-muted-foreground">{item.students} siswa</div>
                           </div>
-                          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                            {item.count}
-                          </div>
+                          <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">{item.count}</div>
                         </div>
                       ))}
                     </div>
@@ -437,43 +392,29 @@ export default function Component() {
               <div className="flex justify-center">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4 max-w-2xl">
                   <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-300 hover:scale-105 hover:shadow-md border border-transparent hover:border-blue-200/50 dark:hover:border-blue-700/50">
-                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
-                      314
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      Total Sekolah
-                    </div>
+                    <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">314</div>
+                    <div className="text-sm text-muted-foreground">Total Sekolah</div>
                   </div>
                   <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-300 hover:scale-105 hover:shadow-md border border-transparent hover:border-green-200/50 dark:hover:border-green-700/50">
-                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">
-                      2,847
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      Total Guru
-                    </div>
+                    <div className="text-2xl font-bold text-green-600 dark:text-green-400">2,847</div>
+                    <div className="text-sm text-muted-foreground">Total Guru</div>
                   </div>
                   <div className="text-center p-4 bg-card/60 dark:bg-card/40 rounded-lg hover:bg-card/80 dark:hover:bg-card/60 transition-all duration-300 hover:scale-105 hover:shadow-md border border-transparent hover:border-purple-200/50 dark:hover:border-purple-700/50">
-                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
-                      50,050
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      Total Siswa
-                    </div>
+                    <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">50,050</div>
+                    <div className="text-sm text-muted-foreground">Total Siswa</div>
                   </div>
                 </div>
               </div>
               <div className="text-xs text-muted-foreground border-t border-border/50 pt-4">
                 <p className="mb-2">
-                  <strong>Sumber Data:</strong> Dapodik Kemendikbudristek, Data
-                  Pokok Pendidikan Kota Banjarmasin
+                  <strong>Sumber Data:</strong> Dapodik Kemendikbudristek, Data Pokok Pendidikan Kota Banjarmasin
                 </p>
                 <p>
-                  <strong>Periode:</strong> Semester Genap Tahun Pelajaran
-                  2024/2025 |<strong> Terakhir Diperbarui:</strong> Januari 2025
+                  <strong>Periode:</strong> Semester Genap Tahun Pelajaran 2024/2025 |
+                  <strong> Terakhir Diperbarui:</strong> Januari 2025
                 </p>
                 <p className="mt-2 text-blue-600 dark:text-blue-400 font-medium">
-                  *Data mencakup PAUD, SD/MI, dan SMP/MTs sesuai kewenangan
-                  Dinas Pendidikan Kota Banjarmasin
+                  *Data mencakup PAUD, SD/MI, dan SMP/MTs sesuai kewenangan Dinas Pendidikan Kota Banjarmasin
                 </p>
               </div>
             </div>
@@ -482,15 +423,10 @@ export default function Component() {
       </section>
 
       {/* News Section */}
-      <section
-        id="berita"
-        className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden"
-      >
+      <section id="berita" className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up" delay={0} duration={800}>
-            <h2 className="text-3xl font-bold text-center text-foreground mb-12">
-              Berita Terkini
-            </h2>
+            <h2 className="text-3xl font-bold text-center text-foreground mb-12">Berita Terkini</h2>
           </ScrollReveal>
 
           <ScrollReveal animation="fade-up" delay={200} duration={800}>
@@ -505,9 +441,7 @@ export default function Component() {
                   className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 transform transition-all duration-300 hover:scale-105 hover:shadow-xl"
                 >
                   Lihat Semua Berita
-                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
+                  <span className="ml-2 transition-transform duration-300 group-hover:translate-x-1">→</span>
                 </Button>
               </Link>
             </div>
@@ -516,15 +450,10 @@ export default function Component() {
       </section>
 
       {/* Agenda Section */}
-      <section
-        id="agenda"
-        className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden"
-      >
+      <section id="agenda" className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up" delay={0} duration={800}>
-            <h2 className="text-3xl font-bold text-center text-foreground mb-12">
-              Agenda Mendatang
-            </h2>
+            <h2 className="text-3xl font-bold text-center text-foreground mb-12">Agenda Mendatang</h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
@@ -532,15 +461,13 @@ export default function Component() {
                 title: "Workshop Kurikulum Merdeka",
                 date: "15 Agustus 2025",
                 location: "Aula Dinas Pendidikan",
-                description:
-                  "Workshop untuk guru-guru SD dan SMP mengenai implementasi Kurikulum Merdeka.",
+                description: "Workshop untuk guru-guru SD dan SMP mengenai implementasi Kurikulum Merdeka.",
               },
               {
                 title: "Lomba Inovasi Pembelajaran",
                 date: "20 September 2025",
                 location: "Online",
-                description:
-                  "Kompetisi bagi tenaga pendidik untuk mengembangkan metode pembelajaran inovatif.",
+                description: "Kompetisi bagi tenaga pendidik untuk mengembangkan metode pembelajaran inovatif.",
               },
               {
                 title: "Seminar Nasional Pendidikan",
@@ -554,9 +481,7 @@ export default function Component() {
                 key={index}
                 ref={setAgendaRef(index)}
                 className={`transform transition-all duration-700 ease-out ${
-                  agendaVisible[index]
-                    ? "opacity-100 translate-y-0 rotate-0"
-                    : "opacity-0 translate-y-8 rotate-1"
+                  agendaVisible[index] ? "opacity-100 translate-y-0 rotate-0" : "opacity-0 translate-y-8 rotate-1"
                 }`}
               >
                 <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 group border-2 border-transparent hover:border-blue-400">
@@ -565,30 +490,24 @@ export default function Component() {
                       {agenda.title}
                     </h3>
                     <p className="text-muted-foreground text-sm mb-2">
-                      <span className="font-semibold">Tanggal:</span>{" "}
-                      {agenda.date}
+                      <span className="font-semibold">Tanggal:</span> {agenda.date}
                     </p>
                     <p className="text-muted-foreground text-sm mb-4">
-                      <span className="font-semibold">Lokasi:</span>{" "}
-                      {agenda.location}
+                      <span className="font-semibold">Lokasi:</span> {agenda.location}
                     </p>
-                    <p className="text-muted-foreground mb-4 line-clamp-3">
-                      {agenda.description}
-                    </p>
+                    <p className="text-muted-foreground mb-4 line-clamp-3">{agenda.description}</p>
                     <Link
                       href={`/agenda/${
                         index === 0
                           ? "workshop-kurikulum-merdeka"
                           : index === 1
-                          ? "lomba-inovasi-pembelajaran"
-                          : "seminar-nasional-pendidikan"
+                            ? "lomba-inovasi-pembelajaran"
+                            : "seminar-nasional-pendidikan"
                       }`}
                       className="text-blue-600 hover:text-blue-700 font-medium transition-all duration-300 relative group-hover:translate-x-2 inline-flex items-center"
                     >
                       Lihat Detail
-                      <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">
-                        →
-                      </span>
+                      <span className="ml-1 transition-transform duration-300 group-hover:translate-x-1">→</span>
                     </Link>
                   </CardContent>
                 </Card>
@@ -599,32 +518,25 @@ export default function Component() {
       </section>
 
       {/* Contact Section */}
-      <section
-        id="kontak"
-        className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden"
-      >
+      <section id="kontak" className="py-16 bg-card shadow-sm border-y border-border relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <ScrollReveal animation="fade-up" delay={0} duration={800}>
-            <h2 className="text-3xl font-bold text-center text-foreground mb-12">
-              Hubungi Kami
-            </h2>
+            <h2 className="text-3xl font-bold text-center text-foreground mb-12">Hubungi Kami</h2>
           </ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
             {/* Contact Info */}
             <ScrollReveal animation="fade-right" delay={200} duration={800}>
               <div className="space-y-6">
                 <p className="text-muted-foreground text-lg leading-relaxed">
-                  Jangan ragu untuk menghubungi kami jika Anda memiliki
-                  pertanyaan, saran, atau membutuhkan bantuan. Tim kami siap
-                  melayani Anda.
+                  Jangan ragu untuk menghubungi kami jika Anda memiliki pertanyaan, saran, atau membutuhkan bantuan. Tim
+                  kami siap melayani Anda.
                 </p>
                 <div className="space-y-4">
                   <div className="flex items-start space-x-3">
                     <MapPin className="w-6 h-6 text-blue-600 flex-shrink-0" />
                     <p className="text-foreground">
-                      Jl. Kapten Piere Tendean No.29, RT.40, Gadang, Kec.
-                      Banjarmasin Tengah, Kota Banjarmasin, Kalimantan Selatan
-                      70231
+                      Jl. Kapten Piere Tendean No.29, RT.40, Gadang, Kec. Banjarmasin Tengah, Kota Banjarmasin,
+                      Kalimantan Selatan 70231
                     </p>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -633,9 +545,7 @@ export default function Component() {
                   </div>
                   <div className="flex items-center space-x-3">
                     <Mail className="w-6 h-6 text-blue-600 flex-shrink-0" />
-                    <p className="text-foreground">
-                      disdik@banjarmasinkota.go.id
-                    </p>
+                    <p className="text-foreground">disdik@banjarmasinkota.go.id</p>
                   </div>
                 </div>
                 <div className="w-full h-64 bg-muted rounded-lg overflow-hidden relative border-2 border-border hover:border-blue-400 transition-all duration-300">
@@ -671,56 +581,30 @@ export default function Component() {
                 <CardContent className="p-0">
                   <form className="space-y-6">
                     <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium text-foreground mb-2"
-                      >
+                      <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                         Nama Lengkap
                       </label>
-                      <Input
-                        id="name"
-                        placeholder="Masukkan nama lengkap Anda"
-                      />
+                      <Input id="name" placeholder="Masukkan nama lengkap Anda" />
                     </div>
                     <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium text-foreground mb-2"
-                      >
+                      <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
                         Email
                       </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="Masukkan email Anda"
-                      />
+                      <Input id="email" type="email" placeholder="Masukkan email Anda" />
                     </div>
                     <div>
-                      <label
-                        htmlFor="subject"
-                        className="block text-sm font-medium text-foreground mb-2"
-                      >
+                      <label htmlFor="subject" className="block text-sm font-medium text-foreground mb-2">
                         Subjek
                       </label>
                       <Input id="subject" placeholder="Subjek pesan Anda" />
                     </div>
                     <div>
-                      <label
-                        htmlFor="message"
-                        className="block text-sm font-medium text-foreground mb-2"
-                      >
+                      <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
                         Pesan Anda
                       </label>
-                      <Textarea
-                        id="message"
-                        placeholder="Tulis pesan Anda di sini..."
-                        rows={5}
-                      />
+                      <Textarea id="message" placeholder="Tulis pesan Anda di sini..." rows={5} />
                     </div>
-                    <Button
-                      type="submit"
-                      className="w-full bg-blue-600 hover:bg-blue-700"
-                    >
+                    <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700">
                       Kirim Pesan
                     </Button>
                   </form>
@@ -745,8 +629,8 @@ export default function Component() {
                   <span className="text-xl font-bold text-white">SIMDIK</span>
                 </div>
                 <p className="text-blue-200 leading-relaxed">
-                  Membangun masa depan pendidikan Banjarmasin melalui inovasi,
-                  kolaborasi, dan komitmen untuk mencerdaskan generasi bangsa.
+                  Membangun masa depan pendidikan Banjarmasin melalui inovasi, kolaborasi, dan komitmen untuk
+                  mencerdaskan generasi bangsa.
                 </p>
               </div>
             </ScrollReveal>
@@ -754,39 +638,34 @@ export default function Component() {
             {/* Column 2: Quick Links */}
             <ScrollReveal animation="fade-up" delay={200} duration={800}>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-4">
-                  Tautan Cepat
-                </h3>
+                <h3 className="text-lg font-semibold text-white mb-4">Tautan Cepat</h3>
                 <ul className="space-y-2">
-                  {[
-                    "Beranda",
-                    "Tentang SIMDIK",
-                    "Direktori Sekolah",
-                    "Berita",
-                    "Agenda",
-                    "Kontak",
-                  ].map((item, index) => (
-                    <li key={index}>
-                      <Link
-                        href={
-                          item === "Direktori Sekolah"
-                            ? "/direktori-sekolah"
-                            : item === "Tentang SIMDIK"
-                            ? "/tentang-simdik"
-                            : item === "Berita"
-                            ? "#berita"
-                            : item === "Agenda"
-                            ? "#agenda"
-                            : item === "Kontak"
-                            ? "#kontak"
-                            : "#"
-                        }
-                        className="text-blue-200 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block"
-                      >
-                        {item}
-                      </Link>
-                    </li>
-                  ))}
+                  {["Beranda", "Reservasi", "Tentang SIMDIK", "Direktori Sekolah", "Berita", "Agenda", "Kontak"].map(
+                    (item, index) => (
+                      <li key={index}>
+                        <Link
+                          href={
+                            item === "Reservasi"
+                              ? "/reservasi"
+                              : item === "Direktori Sekolah"
+                                ? "/direktori-sekolah"
+                                : item === "Tentang SIMDIK"
+                                  ? "/tentang-simdik"
+                                  : item === "Berita"
+                                    ? "#berita"
+                                    : item === "Agenda"
+                                      ? "#agenda"
+                                      : item === "Kontak"
+                                        ? "#kontak"
+                                        : "#"
+                          }
+                          className="text-blue-200 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block"
+                        >
+                          {item}
+                        </Link>
+                      </li>
+                    ),
+                  )}
                 </ul>
               </div>
             </ScrollReveal>
@@ -794,9 +673,7 @@ export default function Component() {
             {/* Column 3: Contact Info */}
             <ScrollReveal animation="fade-up" delay={400} duration={800}>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-4">
-                  Kontak Kami
-                </h3>
+                <h3 className="text-lg font-semibold text-white mb-4">Kontak Kami</h3>
                 <div className="space-y-3 text-blue-200">
                   <p className="transition-all duration-300 hover:text-white">
                     Jl. Kapten Piere Tendean No.29, RT.40
@@ -805,12 +682,8 @@ export default function Component() {
                     <br />
                     Kota Banjarmasin, Kalimantan Selatan 70231
                   </p>
-                  <p className="transition-all duration-300 hover:text-white">
-                    Telepon: (0511) 3252732
-                  </p>
-                  <p className="transition-all duration-300 hover:text-white">
-                    Email: disdik@banjarmasinkota.go.id
-                  </p>
+                  <p className="transition-all duration-300 hover:text-white">Telepon: (0511) 3252732</p>
+                  <p className="transition-all duration-300 hover:text-white">Email: disdik@banjarmasinkota.go.id</p>
                 </div>
               </div>
             </ScrollReveal>
@@ -818,16 +691,14 @@ export default function Component() {
             {/* Column 4: Social Media */}
             <ScrollReveal animation="fade-up" delay={600} duration={800}>
               <div>
-                <h3 className="text-lg font-semibold text-white mb-4">
-                  Media Sosial
-                </h3>
+                <h3 className="text-lg font-semibold text-white mb-4">Media Sosial</h3>
                 <div className="flex space-x-4">
                   {[
                     { icon: Instagram, color: "hover:bg-pink-600" },
                     { icon: Facebook, color: "hover:bg-blue-600" },
                     { icon: Youtube, color: "hover:bg-red-600" },
                   ].map((social, index) => {
-                    const Icon = social.icon;
+                    const Icon = social.icon
                     return (
                       <Link
                         key={index}
@@ -836,7 +707,7 @@ export default function Component() {
                       >
                         <Icon className="w-5 h-5" />
                       </Link>
-                    );
+                    )
                   })}
                 </div>
               </div>
@@ -846,10 +717,7 @@ export default function Component() {
           {/* Copyright */}
           <ScrollReveal animation="fade-up" delay={800} duration={800}>
             <div className="border-t border-blue-800 mt-8 pt-8 text-center text-blue-200">
-              <p>
-                &copy; {new Date().getFullYear()} Dinas Pendidikan Kota
-                Banjarmasin. Semua hak dilindungi.
-              </p>
+              <p>&copy; {new Date().getFullYear()} Dinas Pendidikan Kota Banjarmasin. Semua hak dilindungi.</p>
             </div>
           </ScrollReveal>
         </div>
@@ -859,13 +727,11 @@ export default function Component() {
       <button
         onClick={scrollToTop}
         className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg transition-all duration-300 hover:bg-blue-700 hover:scale-110 ${
-          showScrollTop
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 translate-y-10 pointer-events-none"
+          showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"
         }`}
       >
         <ArrowUp className="w-6 h-6 mx-auto" />
       </button>
     </div>
-  );
+  )
 }
